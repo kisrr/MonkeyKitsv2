@@ -1,0 +1,49 @@
+name: MonkeyKits
+version: '${project.version}'
+main: me.kisr.monkeykits.Main
+api-version: 1.13
+authors: [ kisr ]
+
+commands:
+  kit:
+    aliases: k
+    description: Kit command
+    permission: monkeykits.kit
+  kit1:
+    aliases: k1
+    description: Loads Kit1
+    permission: monkeykits.kit
+  kit2:
+    aliases: k2
+    description: Loads Kit2
+    permission: monkeykits.kit
+  kit3:
+    aliases: k3
+    description: Loads Kit3
+    permission: monkeykits.kit
+  kit4:
+    aliases: k4
+    description: Loads Kit4
+    permission: monkeykits.kit
+  kit5:
+    aliases: k5
+    description: Loads Kit5
+    permission: monkeykits.kit
+  kit6:
+    aliases: k6
+    description: Loads Kit6
+    permission: monkeykits.kit
+  kit7:
+    aliases: k7
+    description: Loads Kit7
+    permission: monkeykits.kit
+
+permissions:
+  monkeykits.*:
+    description: All permission
+    children:
+      monkeykits.kit: true
+      monkeykits.edit: true
+  monkeykits.kit:
+    description: Kit permission
+    default: true

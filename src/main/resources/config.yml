@@ -1,0 +1,39 @@
+# MONKEYKITS CONFIG
+# plugin made by kisr
+
+#__________________________________________________________________________________________
+
+#BROADCASTED MESSAGES:
+
+#message to be broadcasted when a player loads a kit
+#ex: [MK] Player loaded a kit.
+loadkit-enabled: true
+loadkit-prefix: "&7[&5&lM&d&lK&7] "
+loadkit-suffix: " &7loaded a kit."
+
+#message to be broadcasted when a player opens the kitroom
+#ex: [MK] Player opened the Virtual Kit Room.
+open-kitroom-enabled: true
+open-kitroom-prefix: "&7[&5&lM&d&lK&7] "
+open-kitroom-suffix: " &7opened the Virtual Kit Room."
+
+#message to be broadcasted when a player loads the premade kit
+#ex: [ML] Player loaded the premade kit.
+premadekit-enabled: true
+premadekit-prefix: "&7[&5&lM&d&lK&7] "
+premadekit-suffix: " &7loaded the premade kit."
+
+#__________________________________________________________________________________________
+
+#PLAYER MESSAGES:
+
+#message to be sent to the player after they join
+motd-enabled: false
+motd:
+  - "&dType &b/k &dor &b/kit &dto get started."
+motd-delay: 5
+
+#message to be sent when info button gets clicked
+info-enabled: true
+info:
+  - "&dPlugin made by &bkisr"
