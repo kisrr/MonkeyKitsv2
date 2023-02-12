@@ -42,6 +42,12 @@ info:
 
 #WORLD CONFIG
 
+#worlds to disable the plugin on
 disable-worlds: true
 worlds:
   - "example"
+
+#KIT CONFIG
+
+#to disable the use of ender chest in the gui
+disable-echest: false

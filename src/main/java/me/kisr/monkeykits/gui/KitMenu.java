@@ -5,6 +5,7 @@ import me.kisr.monkeykits.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KitMenu {
+    private static FileConfiguration config = Main.instance.getConfig();
 
     public KitMenu(Player player) {
         Inventory kitMenu = Bukkit.createInventory(player, 54, "§9§l" + player.getName() + "'s Kits");
@@ -33,11 +35,15 @@ public class KitMenu {
         }
 
         for (int i = 1; i <= 7; i++) {
-            lore.add(ChatColor.LIGHT_PURPLE + "to edit:");
-            lore.add(ChatColor.LIGHT_PURPLE + "• click this ender chest");
-            lore.add(ChatColor.GRAY + "to load:");
-            lore.add(ChatColor.GRAY + "• /k" + i);
-            lore.add(ChatColor.GRAY + "• /kit" + i);
+            if (config.getBoolean("disable-echest")) {
+                lore.add(ChatColor.GRAY + "Disabled");
+            } else {
+                lore.add(ChatColor.LIGHT_PURPLE + "to edit:");
+                lore.add(ChatColor.LIGHT_PURPLE + "• click this ender chest");
+                lore.add(ChatColor.GRAY + "to load:");
+                lore.add(ChatColor.GRAY + "• /k" + i);
+                lore.add(ChatColor.GRAY + "• /kit" + i);
+            }
 
             ItemStack item = ItemUtils.getItem("§6§lEnder Chest " + i, Material.ENDER_CHEST, lore);
             kitMenu.setItem(i + 18, item);

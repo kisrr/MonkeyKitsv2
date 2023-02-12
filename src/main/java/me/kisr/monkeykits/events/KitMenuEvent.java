@@ -44,9 +44,11 @@ public class KitMenuEvent implements Listener {
         }
 
         if (19 <= event.getSlot() && event.getSlot() <= 25) {
-            int echest = event.getSlot() - 18;
+            if (!config.getBoolean("disable-echest")) {
+                int echest = event.getSlot() - 18;
 
-            new EnderChestEditor(player, echest);
+                new EnderChestEditor(player, echest);
+            }
         }
 
         if (event.getSlot() == 40 && config.getBoolean("info-enabled")) {

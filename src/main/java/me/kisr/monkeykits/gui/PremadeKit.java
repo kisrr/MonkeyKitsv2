@@ -40,21 +40,21 @@ public class PremadeKit {
 
         lore.clear();
 
-        lore.add("§8Permission to see this button: monkeykits.edit");
+        lore.add("§8Permission to see this: monkeykits.edit");
         item = ItemUtils.getItem("§a§lSAVE CHANGES", Material.GREEN_TERRACOTTA, lore);
 
         if (player.hasPermission("monkeykits.edit")) {
             premadeKit.setItem(45, item);
 
-            item = ItemUtils.getItem("§a§lCLEAR", Material.STRUCTURE_VOID, null);
+            item = ItemUtils.getItem("§a§lCLEAR", Material.STRUCTURE_VOID, lore);
 
             premadeKit.setItem(48, item);
 
-            item = ItemUtils.getItem("§a§lIMPORT CURRENT INVENTORY", Material.CHEST, null);
+            item = ItemUtils.getItem("§a§lIMPORT CURRENT INVENTORY", Material.CHEST, lore);
 
             premadeKit.setItem(49, item);
         } else {
-            item = ItemUtils.getItem("§cEXIT", Material.OAK_DOOR, null);
+            item = ItemUtils.getItem("§cEXIT", Material.OAK_DOOR, lore);
             premadeKit.setItem(45, item);
         }
 
