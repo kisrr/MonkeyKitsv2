@@ -21,8 +21,8 @@ public class KitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (config.getBoolean("blacklist-enabled") && config.getStringList("blacklisted-worlds").contains(player.getWorld().getName()) && !player.hasPermission("monkeykits.bypass")) {
-            player.sendMessage("§cNo permission!");
+        if (config.getBoolean("disabled-worlds") && config.getStringList("worlds").contains(player.getWorld().getName()) && !player.hasPermission("monkeykits.bypass")) {
+            sender.sendMessage("§cNo permission!");
             return true;
         }
 

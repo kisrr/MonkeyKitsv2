@@ -37,3 +37,11 @@ motd-delay: 5
 info-enabled: true
 info:
   - "&dPlugin made by &bkisr"
+
+#__________________________________________________________________________________________
+
+#WORLD CONFIG
+
+disable-worlds: true
+worlds:
+  - "example"

@@ -20,6 +20,11 @@ public class KitClaimer implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        if (config.getBoolean("disabled-worlds") && config.getStringList("worlds").contains(player.getWorld().getName()) && !player.hasPermission("monkeykits.bypass")) {
+            sender.sendMessage("§cNo permission!");
+            return true;
+        }
+
         try {
             int kit = Integer.valueOf(command.getName().replace("kit", "").replace("k", ""));
             KitUtils.claim(player, kit, true);

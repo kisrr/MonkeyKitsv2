@@ -44,6 +44,13 @@ permissions:
     children:
       monkeykits.kit: true
       monkeykits.edit: true
+      monkeykits.bypass: true
   monkeykits.kit:
     description: Kit permission
     default: true
+  monkeykits.edit:
+    description: Edit permission
+    default: op
+  monkeykits.bypass:
+    description: Bypass restrictions
+    default: op

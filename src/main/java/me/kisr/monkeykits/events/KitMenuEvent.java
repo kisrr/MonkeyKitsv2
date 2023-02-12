@@ -51,7 +51,7 @@ public class KitMenuEvent implements Listener {
 
         if (event.getSlot() == 40 && config.getBoolean("info-enabled")) {
             player.closeInventory();
-            
+
             for (String s : config.getStringList("info")) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', s));
             }
