@@ -23,7 +23,7 @@ public class EnderChestUtils {
         String uuid = player.getUniqueId().toString();
         String echestkey = "echest" + echest;
 
-        ItemStack[] echestItems = Arrays.copyOfRange(player.getOpenInventory().getTopInventory().getContents(), 0, 26);
+        ItemStack[] echestItems = Arrays.copyOfRange(player.getOpenInventory().getTopInventory().getContents(), 0, 27);
 
         boolean echestItemsEmpty = true;
 
