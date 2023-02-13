@@ -47,6 +47,8 @@ disable-worlds: true
 worlds:
   - "example"
 
+#__________________________________________________________________________________________
+
 #KIT CONFIG
 
 #to disable the use of ender chest in the gui
