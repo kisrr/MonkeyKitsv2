@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KitMenu {
-    private static FileConfiguration config = Main.instance.getConfig();
+    private static final FileConfiguration config = Main.instance.getConfig();
 
     public KitMenu(Player player) {
         Inventory kitMenu = Bukkit.createInventory(player, 54, "§9§l" + player.getName() + "'s Kits");

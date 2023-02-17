@@ -14,14 +14,14 @@ import java.util.UUID;
 
 public class PremadeKit {
 
-    public PremadeKit(Player player) {
+    public PremadeKit(Player player, boolean copykit, String code) {
         UUID unique = player.getUniqueId();
-        String uuid = unique.toString();
 
         Inventory premadeKit = Bukkit.createInventory(player, 54, "§5§lPremade Kit");
 
         try {
-            premadeKit.setContents(Main.kitMap.get("system").get("premadekit"));
+            if (copykit) premadeKit.setContents(Main.codeMap.get(code));
+            else premadeKit.setContents(Main.kitMap.get("system").get("premadekit"));
         } catch (Exception ignored) {
 
         }
@@ -32,7 +32,7 @@ public class PremadeKit {
             lore.add("§7Order doesn't matter!");
         }
 
-        ItemStack item = ItemUtils.getItem("§7§l← ARMOR + OFFHAND", Material.LIGHT_BLUE_STAINED_GLASS_PANE, lore);
+        ItemStack item = ItemUtils.getItem("§7§l← ARMOR + OFFHAND", Material.BLUE_STAINED_GLASS_PANE, lore);
 
         for (int i = 41; i <= 44; i++) {
             premadeKit.setItem(i, item);
@@ -40,17 +40,20 @@ public class PremadeKit {
 
         lore.clear();
 
-        lore.add("§8Permission to see this: monkeykits.edit");
         item = ItemUtils.getItem("§a§lSAVE CHANGES", Material.GREEN_TERRACOTTA, lore);
 
         if (player.hasPermission("monkeykits.edit")) {
             premadeKit.setItem(45, item);
 
-            item = ItemUtils.getItem("§a§lCLEAR", Material.STRUCTURE_VOID, lore);
+            item = ItemUtils.getItem("§a§lIMPORT CURRENT INVENTORY", Material.CHEST, null);
+
+            premadeKit.setItem(47, item);
+
+            item = ItemUtils.getItem("§a§lCOPY", Material.BOOK, null);
 
             premadeKit.setItem(48, item);
 
-            item = ItemUtils.getItem("§a§lIMPORT CURRENT INVENTORY", Material.CHEST, lore);
+            item = ItemUtils.getItem("§a§lCLEAR", Material.STRUCTURE_VOID, null);
 
             premadeKit.setItem(49, item);
         } else {

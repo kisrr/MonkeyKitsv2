@@ -22,11 +22,8 @@ public class KitEditor {
         Inventory kitEditor = Bukkit.createInventory(player, 54, "§5§l" + kitname);
 
         try {
-            if (copykit) {
-                kitEditor.setContents(Main.codeMap.get(code));
-            } else {
-                kitEditor.setContents(Main.kitMap.get(uuid).get(kitkey));
-            }
+            if (copykit) kitEditor.setContents(Main.codeMap.get(code));
+            else kitEditor.setContents(Main.kitMap.get(uuid).get(kitkey));
         } catch (Exception ignored) {
 
         }

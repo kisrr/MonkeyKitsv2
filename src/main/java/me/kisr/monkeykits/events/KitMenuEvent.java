@@ -73,7 +73,7 @@ public class KitMenuEvent implements Listener {
 
         if (event.getSlot() == 41) {
             if (event.isRightClick()) {
-                new PremadeKit(player);
+                new PremadeKit(player, false, null);
             } else if (event.isLeftClick()) {
                 PremadeKitUtils.claim(player);
 

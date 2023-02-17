@@ -26,7 +26,6 @@ public class KitRoom {
         ItemStack item = ItemUtils.getItem("§a§lSAVE CHANGES", Material.GREEN_TERRACOTTA, lore);
 
         if (player.hasPermission("monkeykits.edit")) {
-            lore.add("§8Permission to see this: monkeykits.edit");
             kitRoom.setItem(45, item);
         } else {
             item = ItemUtils.getItem("§cEXIT", Material.OAK_DOOR, null);

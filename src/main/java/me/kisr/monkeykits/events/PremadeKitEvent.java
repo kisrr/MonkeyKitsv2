@@ -1,6 +1,7 @@
 package me.kisr.monkeykits.events;
 
 import me.kisr.monkeykits.Main;
+import me.kisr.monkeykits.gui.CopyKit;
 import me.kisr.monkeykits.gui.KitMenu;
 import me.kisr.monkeykits.utils.PremadeKitUtils;
 import org.bukkit.entity.Player;
@@ -34,15 +35,19 @@ public class PremadeKitEvent implements Listener {
                 PremadeKitUtils.save(player);
             }
 
-            if (event.getSlot() == 48) {
+            if (event.getSlot() == 47) {
                 for (int i = 0; i <= 40; i++) {
-                    event.getInventory().setItem(i, null);
+                    event.getInventory().setItem(i, player.getInventory().getItem(i));
                 }
+            }
+
+            if (event.getSlot() == 48) {
+                new CopyKit(player, 0, true);
             }
 
             if (event.getSlot() == 49) {
                 for (int i = 0; i <= 40; i++) {
-                    event.getInventory().setItem(i, player.getInventory().getItem(i));
+                    event.getInventory().setItem(i, null);
                 }
             }
         } else {

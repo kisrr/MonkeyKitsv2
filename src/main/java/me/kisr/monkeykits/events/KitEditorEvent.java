@@ -5,6 +5,7 @@ import me.kisr.monkeykits.gui.CopyKit;
 import me.kisr.monkeykits.gui.KitMenu;
 import me.kisr.monkeykits.utils.KitShareUtils;
 import me.kisr.monkeykits.utils.KitUtils;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class KitEditorEvent implements Listener {
+    private static final FileConfiguration config = Main.instance.getConfig();
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void on(InventoryClickEvent event) {
@@ -34,7 +36,8 @@ public class KitEditorEvent implements Listener {
         int kit = Main.kitEditorChecker.get(unique);
 
         if (event.getSlot() >= 41) {
-            event.setCancelled(true);
+            if (event.isShiftClick())
+                event.setCancelled(true);
         }
 
         if (event.getSlot() == 45) {
@@ -49,10 +52,11 @@ public class KitEditorEvent implements Listener {
 
         if (event.getSlot() == 48) {
             if (!KitUtils.isKitEmpty(player)) {
+                int delay = config.getInt("expire-time");
                 String code = KitShareUtils.generateCode();
                 ItemStack[] items = Arrays.copyOfRange(player.getOpenInventory().getTopInventory().getContents(), 0, 41);
                 Main.codeMap.put(code, items);
-                player.sendMessage("§dUse code §b" + code + " §dto share your kit, expires in 5 minutes.");
+                player.sendMessage("§dUse code §b" + code + " §dto share your kit, expires in " + delay + " minutes.");
                 player.closeInventory();
 
                 new BukkitRunnable() {
@@ -60,7 +64,7 @@ public class KitEditorEvent implements Listener {
                     public void run() {
                         Main.codeMap.remove(code);
                     }
-                }.runTaskLater(Main.instance, 20 * 300);
+                }.runTaskLater(Main.instance, 20L * 60 * delay);
             } else {
                 player.sendMessage("§cCannot share an empty kit.");
             }
@@ -68,7 +72,7 @@ public class KitEditorEvent implements Listener {
 
         if (event.getSlot() == 49) {
             player.closeInventory();
-            new CopyKit(player, kit);
+            new CopyKit(player, kit, false);
         }
 
         if (event.getSlot() == 50) {
