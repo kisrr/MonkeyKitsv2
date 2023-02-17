@@ -24,6 +24,7 @@ public final class Main extends JavaPlugin {
     public static final HashMap<String, HashMap<String, ItemStack[]>> echestMap = new HashMap<>();
     public static final HashMap<String, HashMap<String, ItemStack[]>> kitMap = new HashMap<>();
     public static final HashMap<Integer, ItemStack[]> kitRoomMap = new HashMap<>();
+    public static final HashMap<String, ItemStack[]> codeMap = new HashMap<>();
 
     @Override
     public void onEnable() {

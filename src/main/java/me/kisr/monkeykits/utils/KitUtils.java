@@ -87,4 +87,19 @@ public class KitUtils {
             player.sendMessage("§dSaved §bKit " + kit + "§d! Type §b/k" + kit + "§d or §b/kit" + kit + " §dto load!");
         }
     }
+
+    public static boolean isKitEmpty(Player player) {
+        ItemStack[] kitItems = Arrays.copyOfRange(player.getOpenInventory().getTopInventory().getContents(), 0, 41);
+
+        boolean kitItemsEmpty = true;
+
+        for (int i = 0; i <= 40; i++) {
+            if (kitItems[i] != null) {
+                kitItemsEmpty = false;
+                break;
+            }
+        }
+
+        return kitItemsEmpty;
+    }
 }

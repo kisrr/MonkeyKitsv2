@@ -1,0 +1,25 @@
+package me.kisr.monkeykits.gui;
+
+import me.kisr.monkeykits.Main;
+import me.kisr.monkeykits.utils.ItemUtils;
+import net.wesjd.anvilgui.AnvilGUI;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
+import java.util.Collections;
+
+public class CopyKit {
+
+    public CopyKit(Player player, int kit) {
+
+        new AnvilGUI.Builder()
+                .onComplete(((p, code) -> {
+                    if (Main.codeMap.containsKey(code)) new KitEditor(player, kit, true, code);
+                    else player.sendMessage("§cCode doesn't exist.");
+                    return Collections.singletonList(AnvilGUI.ResponseAction.close());
+                })).itemLeft(ItemUtils.getItem(" ", Material.GOLD_NUGGET, null))
+                .title("§5§lCopy Kit")
+                .plugin(Main.instance)
+                .open(player);
+    }
+}

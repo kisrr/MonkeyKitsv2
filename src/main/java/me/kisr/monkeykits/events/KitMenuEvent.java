@@ -43,7 +43,7 @@ public class KitMenuEvent implements Listener {
                 KitUtils.claim(player, kit, false);
                 player.closeInventory();
             } else if (event.isRightClick()) {
-                new KitEditor(player, kit);
+                new KitEditor(player, kit, false, null);
             }
         }
 

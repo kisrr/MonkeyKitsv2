@@ -1,20 +1,26 @@
 package me.kisr.monkeykits.events;
 
 import me.kisr.monkeykits.Main;
+import me.kisr.monkeykits.gui.CopyKit;
 import me.kisr.monkeykits.gui.KitMenu;
+import me.kisr.monkeykits.utils.KitShareUtils;
 import me.kisr.monkeykits.utils.KitUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 public class KitEditorEvent implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void on(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         UUID unique = player.getUniqueId();
@@ -25,6 +31,8 @@ public class KitEditorEvent implements Listener {
         if (!Main.kitEditorChecker.containsKey(unique))
             return;
 
+        int kit = Main.kitEditorChecker.get(unique);
+
         if (event.getSlot() >= 41) {
             event.setCancelled(true);
         }
@@ -33,15 +41,39 @@ public class KitEditorEvent implements Listener {
             new KitMenu(player);
         }
 
-        if (event.getSlot() == 48) {
+        if (event.getSlot() == 47) {
             for (int i = 0; i <= 40; i++) {
-                event.getInventory().setItem(i, null);
+                event.getInventory().setItem(i, player.getInventory().getItem(i));
+            }
+        }
+
+        if (event.getSlot() == 48) {
+            if (!KitUtils.isKitEmpty(player)) {
+                String code = KitShareUtils.generateCode();
+                ItemStack[] items = Arrays.copyOfRange(player.getOpenInventory().getTopInventory().getContents(), 0, 41);
+                Main.codeMap.put(code, items);
+                player.sendMessage("§dUse code §b" + code + " §dto share your kit, expires in 5 minutes.");
+                player.closeInventory();
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        Main.codeMap.remove(code);
+                    }
+                }.runTaskLater(Main.instance, 20 * 300);
+            } else {
+                player.sendMessage("§cCannot share an empty kit.");
             }
         }
 
         if (event.getSlot() == 49) {
+            player.closeInventory();
+            new CopyKit(player, kit);
+        }
+
+        if (event.getSlot() == 50) {
             for (int i = 0; i <= 40; i++) {
-                event.getInventory().setItem(i, player.getInventory().getItem(i));
+                event.getInventory().setItem(i, null);
             }
         }
     }
