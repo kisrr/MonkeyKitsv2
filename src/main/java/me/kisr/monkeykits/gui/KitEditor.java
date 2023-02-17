@@ -59,6 +59,10 @@ public class KitEditor {
 
         kitEditor.setItem(50, item);
 
+        item = ItemUtils.getItem("§a§lREPAIR", Material.EXPERIENCE_BOTTLE, null);
+
+        kitEditor.setItem(51, item);
+
         item = ItemUtils.getItem(" ", Material.BLACK_STAINED_GLASS_PANE, null);
 
         for (int i = 45; i <= 53; i++) {

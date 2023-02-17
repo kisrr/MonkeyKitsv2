@@ -56,3 +56,10 @@ disable-echest: false
 
 #time to wait until a share code expires (in minutes)
 expire-time: 5
+
+#interval between saving kits to the file (in minutes)
+auto-save: false
+auto-save-time: 15
+
+#__________________________________________________________________________________________
+

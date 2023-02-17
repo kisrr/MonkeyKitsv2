@@ -34,6 +34,10 @@ public class EnderChestEditor {
 
         echestEditor.setItem(30, item);
 
+        item = ItemUtils.getItem("§a§lREPAIR", Material.EXPERIENCE_BOTTLE, null);
+
+        echestEditor.setItem(31, item);
+
         item = ItemUtils.getItem(" ", Material.BLACK_STAINED_GLASS_PANE, null);
 
         for (int i = 27; i <= 35; i++) {

@@ -9,7 +9,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.Damageable;
 
 import java.util.UUID;
 
@@ -48,6 +50,24 @@ public class PremadeKitEvent implements Listener {
             if (event.getSlot() == 49) {
                 for (int i = 0; i <= 40; i++) {
                     event.getInventory().setItem(i, null);
+                }
+            }
+
+            if (event.getSlot() == 50) {
+                for (int i = 0; i <= 40; i++) {
+                    if (event.getInventory().getItem(i) != null) {
+                        ItemStack item = event.getInventory().getItem(i);
+
+                        if (item.getItemMeta() instanceof Damageable) {
+                            Damageable meta = (Damageable) item.getItemMeta();
+
+                            if (meta.hasDamage()) {
+                                meta.setDamage(0);
+                                item.setItemMeta(meta);
+                                event.getInventory().setItem(i, item);
+                            }
+                        }
+                    }
                 }
             }
         } else {

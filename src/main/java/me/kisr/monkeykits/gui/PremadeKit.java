@@ -56,6 +56,10 @@ public class PremadeKit {
             item = ItemUtils.getItem("§a§lCLEAR", Material.STRUCTURE_VOID, null);
 
             premadeKit.setItem(49, item);
+
+            item = ItemUtils.getItem("§a§lREPAIR", Material.EXPERIENCE_BOTTLE, null);
+
+            premadeKit.setItem(50, item);
         } else {
             item = ItemUtils.getItem("§cEXIT", Material.OAK_DOOR, lore);
             premadeKit.setItem(45, item);

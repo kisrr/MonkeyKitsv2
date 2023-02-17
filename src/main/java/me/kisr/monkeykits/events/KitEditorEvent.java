@@ -14,6 +14,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
@@ -36,8 +37,7 @@ public class KitEditorEvent implements Listener {
         int kit = Main.kitEditorChecker.get(unique);
 
         if (event.getSlot() >= 41) {
-            if (event.isShiftClick())
-                event.setCancelled(true);
+            event.setCancelled(true);
         }
 
         if (event.getSlot() == 45) {
@@ -78,6 +78,24 @@ public class KitEditorEvent implements Listener {
         if (event.getSlot() == 50) {
             for (int i = 0; i <= 40; i++) {
                 event.getInventory().setItem(i, null);
+            }
+        }
+
+        if (event.getSlot() == 51) {
+            for (int i = 0; i <= 40; i++) {
+                if (event.getInventory().getItem(i) != null) {
+                    ItemStack item = event.getInventory().getItem(i);
+
+                    if (item.getItemMeta() instanceof Damageable) {
+                        Damageable meta = (Damageable) item.getItemMeta();
+
+                        if (meta.hasDamage()) {
+                            meta.setDamage(0);
+                            item.setItemMeta(meta);
+                            event.getInventory().setItem(i, item);
+                        }
+                    }
+                }
             }
         }
     }

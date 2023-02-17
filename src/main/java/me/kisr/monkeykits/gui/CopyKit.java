@@ -13,7 +13,8 @@ public class CopyKit {
     public CopyKit(Player player, int kit, boolean premade) {
 
         new AnvilGUI.Builder()
-                .onComplete(((p, code) -> {
+                .onComplete(((p, string) -> {
+                    String code = string.toUpperCase();
                     if (premade) {
                         if (Main.codeMap.containsKey(code)) new PremadeKit(player, true, code);
                         else player.sendMessage("§cCode doesn't exist.");

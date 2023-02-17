@@ -8,6 +8,7 @@ import me.kisr.monkeykits.files.KitsFile;
 import me.kisr.monkeykits.utils.FileUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,6 +61,22 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
 
         FileUtils.restore();
+
+        if (getConfig().getBoolean("auto-save")) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    KitsFile.get().set("kits", kitMap);
+                    KitsFile.save();
+
+                    KitsFile.get().set("echest", echestMap);
+                    KitsFile.save();
+
+                    KitRoomFile.get().set("items", kitRoomMap);
+                    KitRoomFile.save();
+                }
+            }.runTaskTimerAsynchronously(this, 0, 20L * 60 * getConfig().getInt("auto-save-time"));
+        }
     }
 
     @Override
@@ -72,6 +89,5 @@ public final class Main extends JavaPlugin {
 
         KitRoomFile.get().set("items", kitRoomMap);
         KitRoomFile.save();
-
     }
 }
