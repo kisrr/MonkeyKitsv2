@@ -17,7 +17,7 @@ public class CopyKit {
                     if (Main.codeMap.containsKey(code)) new KitEditor(player, kit, true, code);
                     else player.sendMessage("§cCode doesn't exist.");
                     return Collections.singletonList(AnvilGUI.ResponseAction.close());
-                })).itemLeft(ItemUtils.getItem(" ", Material.GOLD_NUGGET, null))
+                })).itemLeft(ItemUtils.getItem("§6Enter code", Material.GOLD_NUGGET, null))
                 .title("§5§lCopy Kit")
                 .plugin(Main.instance)
                 .open(player);

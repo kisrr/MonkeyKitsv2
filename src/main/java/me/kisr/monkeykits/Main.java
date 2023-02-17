@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 public final class Main extends JavaPlugin {
-    public static Main instance;
     public static final List<UUID> kitMenuChecker = new ArrayList<>();
     public static final HashMap<UUID, Integer> kitEditorChecker = new HashMap<>();
     public static final HashMap<UUID, Integer> echestEditorChecker = new HashMap<>();
@@ -25,6 +24,7 @@ public final class Main extends JavaPlugin {
     public static final HashMap<String, HashMap<String, ItemStack[]>> kitMap = new HashMap<>();
     public static final HashMap<Integer, ItemStack[]> kitRoomMap = new HashMap<>();
     public static final HashMap<String, ItemStack[]> codeMap = new HashMap<>();
+    public static Main instance;
 
     @Override
     public void onEnable() {
